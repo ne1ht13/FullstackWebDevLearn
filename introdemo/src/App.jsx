@@ -1,12 +1,11 @@
 import './App.css'
-
+// Part1: FUNDAMENTAL FOR REACT
 const Hello = (props) => {
 
   console.log(props)
   return (
     <div>
       <p>
-
         Hello {props.name}, you are {props.age} years old
       </p>
     </div>
@@ -26,6 +25,9 @@ const App = () => {
       <Hello name={name} age={age} />
     </div>
   )
+
 }
+
+//PART2: JAVA
 
 export default App
