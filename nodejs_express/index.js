@@ -99,7 +99,7 @@ const unknownEndpoint = (request, response) => {
 }
 
 app.use(unknownEndpoint)
-app.use(errorHandler)
+
 
 
 app.listen(PORT, () => {
