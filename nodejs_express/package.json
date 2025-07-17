@@ -17,5 +17,12 @@
     "dotenv": "^17.0.0",
     "express": "^4.21.2",
     "mongoose": "^8.16.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@stylistic/eslint-plugin-js": "^4.4.1",
+    "eslint": "^9.31.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.3.0"
   }
 }

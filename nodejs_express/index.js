@@ -49,7 +49,7 @@ app.delete('/api/notes/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.post('/api/notes', (request, response) => {
+app.post('/api/notes', (request, response, next) => {
   const body = request.body
 
   if (!body.content) {
@@ -64,6 +64,7 @@ app.post('/api/notes', (request, response) => {
   note.save().then(savedNote => {
     response.json(savedNote)
   })
+  .catch(error => next(error))
 })
 
 app.put('/api/notes/:id', (request, response, next) => {
@@ -86,13 +87,17 @@ app.put('/api/notes/:id', (request, response, next) => {
 })
 
 // Error handling middleware (optional but recommended)
-app.use((error, req, res, next) => {
+const errorHandler = (error, request, response, next) => {
   console.error(error.message)
+
   if (error.name === 'CastError') {
-    return res.status(400).send({ error: 'malformatted id' })
+    return response.status(400).send({ error: 'malformatted id' })
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
   }
+
   next(error)
-})
+}
 
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })
